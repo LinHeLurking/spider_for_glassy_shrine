@@ -1,0 +1,3 @@
+use some special date such as 2018/02/02 2018/02/15 would cause this script's stopping after getting the start_url.
+
+resons are not clear now.

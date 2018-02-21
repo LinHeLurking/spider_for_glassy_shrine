@@ -1,0 +1,5 @@
+lxml
+pypiwin32
+scrapy
+requests
+fake_useragent
