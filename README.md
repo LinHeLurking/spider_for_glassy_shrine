@@ -10,7 +10,7 @@ resultes are stored in the same folder.
 the folder nemed abstract stroes the abstract in txt tiles with date and title as their names.
 image folder stores the images.
 
-# chinese
+# 中文说明
 一个可以自动爬取琉璃神社的爬虫程序
 
 使用说明：
