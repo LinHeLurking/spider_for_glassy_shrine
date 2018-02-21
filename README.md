@@ -1,6 +1,9 @@
 # spider_for_glassy_shrine
 a spider that can crawl glassy shrine(琉璃神社) automatically
 
+configure.py will install dependencies.
+cause on windows deivces installation of twisted via pip3 always fails,so in this script twisted is installed via easy_install
+
 run llss_start.py after install the dependencies and it will ask you for a date to stop.
 any posts before the date you input will not be crawled.
 resultes are stored in the same folder.
@@ -12,7 +15,7 @@ image folder stores the images.
 使用说明：
 
 第一次运行之前通过python运行configure.py将自动安装相关依赖
-(这个过程可能会有点慢)
+由于在Windows机器上通过pip3安装twisted总是失败所以通过easy_install安装
 
 运行llss_start.py即开始主程序，会提示输入一个停止日期，表示早于输
 入日期的内容将不会被抓取。有关日期判断有一个已知的小问题，详见
