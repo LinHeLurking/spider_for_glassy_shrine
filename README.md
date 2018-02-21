@@ -1,5 +1,5 @@
 # spider_for_glassy_shrine
-a spider that can crawl glassy shrine(琉璃神社) automatically
+a spider that can crawl glassy shrine automatically
 
 configure.py will install dependencies.
 cause on windows deivces installation of twisted via pip3 always fails,so in this script twisted is installed via easy_install
@@ -10,7 +10,8 @@ resultes are stored in the same folder.
 the folder nemed abstract stroes the abstract in txt tiles with date and title as their names.
 image folder stores the images.
 
-#chinese
+# chinese
+一个可以自动爬取琉璃神社的爬虫程序
 
 使用说明：
 
