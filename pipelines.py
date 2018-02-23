@@ -22,8 +22,11 @@ class LlssAll_abstrct_Pipeline(object):
         with open(path, 'a', encoding='utf-8') as f:
             f.write('=' * 75)
             f.write('\nmagnet-links:\n')
-            for m in item['magnet']:
-                f.write('magnet:?xt=urn:btih:' + str(m) + '\n')
+            for m in item['magnet_without_prefix']:
+                if str(m[0:4])!='http':
+                    f.write('magnet:?xt=urn:btih:' + str(m) + '\n')
+            for m in item['magnet_with_prefix']:
+                f.write(str(m) + '\n')
             f.write('='*75+'\nabstract:\n')
             for a in item['abstract']:
                 f.write(str(a))
