@@ -10,6 +10,7 @@ from twisted.internet import reactor, defer
 from scrapy.crawler import CrawlerRunner
 from scrapy.utils.log import configure_logging
 import fake_useragent
+import copy
 
 ua = fake_useragent.UserAgent()
 
@@ -69,15 +70,16 @@ class llss_all_spider(scrapy.Spider):
             item['abstract'] = (content.xpath('//div[@class="entry-content"]/*/text()|'
                                               '//div[@class="entry-content"]/*/*/text()').extract())
             M1 = (content.xpath('//div[@class="entry-content"]/*/text()|//div[@class="entry-content"]/*/*/'
-                                'text()').re('([0-9a-fA-F]+)本站不提供下载([0-9a-fA-F]+)'))
+                                'text()').re('([0-9a-fA-F]+)本站不提供下载([0-9a-zA-Z]+)'))
             M2 = (content.xpath('//div[@class="entry-content"]/*/text()|'
-                                '//div[@class="entry-content"]/*/*/text()').re('.*[0-9a-fA-F]{15,}'))
+                                '//div[@class="entry-content"]/*/*/text()').re('.*[0-9a-zA-Z]{15,}'))
             M3 = (content.xpath('//div[@class="entry-content"]/*/text()'
                                 '|//div[@class="entry-content"]/*/*/text()').re('(?=magnet:?xt=urn:btih:).+'))
             i=0
             while i < len(M1):
                 tmp = M1[i]+M1[i+1]
-                M2.append(tmp)
+                M2.append(copy.copy(tmp))
+                tmp.clear()
                 i+=2
             M3 += M2
             item['magnet'] = M2
