@@ -70,19 +70,25 @@ class llss_all_spider(scrapy.Spider):
             item['abstract'] = (content.xpath('//div[@class="entry-content"]/*/text()|'
                                               '//div[@class="entry-content"]/*/*/text()').extract())
             M1 = (content.xpath('//div[@class="entry-content"]/*/text()|//div[@class="entry-content"]/*/*/'
-                                'text()').re('([0-9a-fA-F]+)本站不提供下载([0-9a-zA-Z]+)'))
+                                'text()').re('([0-9a-fA-F]+)本站不提供下载([0-9a-fA-F]+)'))
+            M1 += (content.xpath('//div[@class="entry-content"]/*/*/*/*/text()|//div[@class="entry-content"]/*/*/*/'
+                                'text()').re('([0-9a-fA-F]+)本站不提供下载([0-9a-fA-F]+)'))
             M2 = (content.xpath('//div[@class="entry-content"]/*/text()|'
                                 '//div[@class="entry-content"]/*/*/text()').re('.*[0-9a-zA-Z]{15,}'))
+            M2 += (content.xpath('//div[@class="entry-content"]/*/*/*/text()|'
+                                '//div[@class="entry-content"]/*/*/*/*/text()').re('.*[0-9a-zA-Z]{15,}'))
             M3 = (content.xpath('//div[@class="entry-content"]/*/text()'
-                                '|//div[@class="entry-content"]/*/*/text()').re('(?=magnet:?xt=urn:btih:).+'))
-            i=0
+                                '|//div[@class="entry-content"]/*/*/text()').re('magnet:\?xt=urn:btih:[0-9a-fA-F]+'))
+            M3 += (content.xpath('//div[@class="entry-content"]/*/*/*/text()'
+                                '|//div[@class="entry-content"]/*/*/*/*/text()').re('magnet:\?xt=urn:btih:[0-9a-fA-F]+'))
+            i = 0
             while i < len(M1):
-                tmp = M1[i]+M1[i+1]
+                tmp=M[i]+M[i+1]
                 M2.append(copy.copy(tmp))
                 tmp.clear()
                 i+=2
-            M3 += M2
-            item['magnet'] = M2
+            item['magnet_without_prefix'] = M2
+            item['magnet_with_prefix'] = M3
             item['image_urls'] = content.xpath('//div[@class="entry-content"]//img/@src').extract()
             image_type = []
             for url in item['image_urls']:
