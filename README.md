@@ -7,7 +7,7 @@ cause on windows deivces installation of twisted via pip3 always fails,so in thi
 run llss_start.py after install the dependencies and it will ask you for a date to stop.
 any posts before the date you input will not be crawled.
 resultes are stored in the same folder.
-the folder nemed abstract stroes the abstract in txt tiles with date and title as their names.
+the folder nemed abstract stores the abstract in txt tiles with date and title as their names.
 image folder stores the images.
 
 # 中文说明
